@@ -1,0 +1,21 @@
+<form id="registerForm">
+  <input type="text" id="regUsername" placeholder="Username" required>
+  <input type="password" id="regPassword" placeholder="Password" required>
+  <button type="submit">Register</button>
+</form>
+
+<script>
+document.getElementById("registerForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const username = document.getElementById("regUsername").value;
+  const password = document.getElementById("regPassword").value;
+
+  fetch("https://sheetdb.io/api/v1/f5xhho4okmn2x", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ data: [{ username, password }] })
+  })
+  .then(res => res.json())
+  .then(data => alert("Registered successfully!"));
+});
+</script>
